@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Carousel, Item, Caption } from 'react-bootstrap';
 
 // variables
 import secret from '../config';
 
-/* const URL = `https://newsapi.org/v2/top-headlines?sources=talksport&apiKey=${secret.API_KEY}`; */
 const URL = `https://newsapi.org/v2/top-headlines`;
 const news_Source = 'talksport';
 
@@ -36,14 +36,16 @@ class TopStories extends Component {
             return headlines.map((headline) => {
                 console.log(headline)
                 return (
-                    <div>
-                        <p>{headline.description}</p>
-                        <p>{headline.title}</p>
-                        <p><b>{headline.publishedAt}</b></p>
-                        <img src={headline.urlToImage} />
-                        <a href={headline.url}>Read More</a>
-                        <br/><br/><br/>
-                    </div>
+                    <Carousel.Item className="slider-wrapper">
+                        <img className="slider-img" height={500} alt="900x500" src={headline.urlToImage} />
+                        <Carousel.Caption>
+                            <h3>{headline.title}</h3>
+                            <p>
+                                {headline.description}
+                                <a href={headline.url} target="_blank">Read More</a>
+                            </p>
+                        </Carousel.Caption>
+                    </Carousel.Item>
                 )
             })
         }
@@ -51,9 +53,9 @@ class TopStories extends Component {
 
     render() {
         return (
-            <div>
+            <Carousel controls={true}>
                 {this.renderTopStories(this.state)}
-            </div>
+            </Carousel>
         );
     }
 
