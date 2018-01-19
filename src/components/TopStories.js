@@ -18,12 +18,14 @@ class TopStories extends Component {
         }
     }
 
+    componentDidMount() {
+        this.getTopStories();
+    }
+
     getTopStories () {
         fetch(`${URL}?sources=${news_Source}&apiKey=${secret.API_KEY}`, {method: 'GET'})
             .then(response => response.json())
             .then(data => {
-                // console.log(json)
-                // let json = Object.keys(data.articles)
                 this.setState({
                     topStories: data
                 })
@@ -37,11 +39,11 @@ class TopStories extends Component {
                 console.log(headline)
                 return (
                     <Carousel.Item className="slider-wrapper">
-                        <img className="slider-img" height={500} alt="900x500" src={headline.urlToImage} />
+                        <img className="slider-img"  alt="900x500" src={headline.urlToImage} />
                         <Carousel.Caption>
-                            <h3>{headline.title}</h3>
+                            <h4>{headline.title}</h4>
                             <p>
-                                {headline.description}
+                                {/* {headline.description} */}
                                 <a href={headline.url} target="_blank">Read More</a>
                             </p>
                         </Carousel.Caption>
@@ -57,10 +59,6 @@ class TopStories extends Component {
                 {this.renderTopStories(this.state)}
             </Carousel>
         );
-    }
-
-    componentDidMount() {
-        this.getTopStories();
     }
 }
 

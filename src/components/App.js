@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 // components
 import Header from './Header';
 import TopStories from './TopStories';
+import Articles from './Articles';
 
 class App extends Component {
 
@@ -11,7 +12,7 @@ class App extends Component {
 			<div>
 				<Header/>
 				<TopStories/>
-				Sported
+				<Articles/>
 			</div>
 		);
   	}
