@@ -5,6 +5,7 @@ import { Grid, Row, Col } from 'react-bootstrap';
 
 // variables
 import secret from '../config';
+import shuffleArray from '../functions';
 
 const URL = `https://newsapi.org/v2/everything`;
 const news_Source = 'talksport';
@@ -28,7 +29,7 @@ class Articles extends Component {
         fetch(`${URL}?sources=${news_Source}&apiKey=${secret.API_KEY}`, {method: 'GET'})
             .then(response => response.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 this.setState({
                     news: data
                 })
@@ -38,11 +39,12 @@ class Articles extends Component {
     renderAllArticles = ({news}) => {
         let allArticles = news.articles;
         if (allArticles) {
-            return allArticles.map((article) => {
+            return shuffleArray(allArticles).map((article, index) => {
+                // console.log(article)
                 return (
-                    <Row className="show-grid article-wrapper">
+                    <Row className="show-grid article-wrapper" key={article.index}>
                         <Col md={4}>
-                            <img src={article.urlToImage} className="article-img"/>
+                            <img src={article.urlToImage} className="article-img" alt={article.urlToImage}/>
                         </Col>
                         <Col md={8}>
                             <h4>{article.title}</h4>

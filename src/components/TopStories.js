@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Carousel, Item, Caption } from 'react-bootstrap';
+import { Carousel } from 'react-bootstrap';
 
 // variables
 import secret from '../config';
+
+import shuffleArray from '../functions'
 
 const URL = `https://newsapi.org/v2/top-headlines`;
 const news_Source = 'talksport';
@@ -35,10 +37,10 @@ class TopStories extends Component {
     renderTopStories = ({topStories}) => {
         let headlines = topStories.articles;
         if (headlines) {
-            return headlines.map((headline) => {
-                console.log(headline)
+            return shuffleArray(headlines).map((headline, index) => {
+                // console.log(headline)
                 return (
-                    <Carousel.Item className="slider-wrapper">
+                    <Carousel.Item className="slider-wrapper" key={headline.index}>
                         <img className="slider-img"  alt="900x500" src={headline.urlToImage} />
                         <Carousel.Caption>
                             <h4>{headline.title}</h4>
