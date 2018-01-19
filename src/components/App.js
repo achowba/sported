@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 
-import secret from './config';
+// components
+import Header from './Header';
+import TopStories from './TopStories';
 
 class App extends Component {
 
   	render() {
 		return (
 			<div>
+				<Header/>
+				<TopStories/>
 				Sported
 			</div>
 		);
